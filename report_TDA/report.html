@@ -368,8 +368,40 @@ scatter that they move away from each other or as the resolution
 decreases. We can see errors building up in the persistent diagram and
 all these errors lie on the $45$ degree line representing that these
 features lived only for short period and that it must be due to lack
-of resolution.
+of resolution. </p>
   
+<h3> Application of TDA on Diabetes dataset </h3>
+<p> We set to apply the above method of analysis to a real world
+dataset of diabetes, the aim was to figure out if the above algoritm
+is able to classify ie, cluster out the diabetic and healthy
+individuals. That is we expect to obsereve two connected components
+one denoting the healthy and the other patients</p>
+<h4> Description of the Dataset </h4>
+<p>The data consist of "GSH" and "HbA1c" as features and 100
+individuals for whom the feature values have been measured. Out of
+this 100 there are 49 healthy individuals or controls and 51 diabetic
+partients. The following diagram was plotted after z-scoring the data
+<figure>
+<img src="data.png" alt="data" style="width:600px;height:400px;">
+  <figcaption>Plot:Red dots representing the Diabetic and Black
+  representing the controls</figcaption>
+</figure>
+As we can see two clusters in the above plot(Diabetic and Controls),
+we expect TDA to pick out these structures. Analysing the above
+mentioned data using the RIPS Filtration method yeilds the following
+plot
+<figure>
+<img src="persistance_rips.png" alt="persistance" style="width:600px;height:400px;">
+  <figcaption>Plot:Persistance diagram of the diabetic dataset using
+  rips filtration, the black dots denoting connected components and
+  triangle denoting 1-dimensional holes. </figcaption>
+</figure>
+But, from the above plot we can see that TDA is picking out three
+connected components or clusters, implying that there is one more
+subclass of the individuals that we might have overlooked. Hence
+analysis of TDA on the above dataset implies that there might exist
+one more subgroup of the population other than controls and
+diabetic.</p>
 
 
 </body>

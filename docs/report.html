@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> An Inner perspective on Topological Data Analysis(TDA) </title>
+    <script type="text/javascript"
+	    src="latexit.js"></script>
+    <script type="text/javascript">
+      LatexIT.add('p',true);
+    </script>
+  </head>
+  <body>
+    <h1> An Inner perspective on Topological Data Analysis(TDA)</h1>
+    <h2> Abstract </h2>
+    <p> This manuscript investigates the influence of shape of the
+    data on the persistent diagrams produced by TDA. This document
+    also provides a brief outline on how TDA works in Mathematical
+    sense. It also introduces the reader Mathematical concepts that
+      are essential for understanding of TDA.</p>
+    <h2> Mathematical Background </h2>
+    <p> We here assume the reader is familiar with topological
+    concepts such as Toplogical spaces, Topology,Homemorphisms,Open
+    and Closed sets.</p>
+    <h3> Fundamental Problem in Topology </h3>
+    <! Bold the below line>
+    <p> Are two topological space equivalent?</p>
+    
+    <p>The whole study of topology is to based on the above question.
+    We need to find a homemorphisim between two given spaces to prove
+    that there are equivalent, and this procedure is difficult.So, we
+    try and show a relatively simpler problem that is to show that two
+    spaces are not eqivalent we find topological invariants in both
+    the spaces and if they are not equal then we conclude the space
+    are not equivalent.One such topological invariant is called the
+      Fundamental Group.</p>
+    <h4>Homotopy of Paths </h4>
+    <p> Let $(X,\tau)$ be a topological space. If $f,f^{'}$ are
+    continuous maps from the space $X$ into $Y$, we say $f$ is
+      homotopic to $f^{'}$ if there exist a continuous map
+      $F:X \times [0,1] \rightarrow Y$
+      such that $F(x,0)=f(x)$ and $F(x,1)=f^{'}(x)$ for each $x$.</p>
+
+    <h4>Homotopy</h4>
+    <p> Homotopy is the collection of continuous 1-parameter family of
+    maps from $X \rightarrow Y$. As the parameter continuously changes
+    from o to 1, the functions continuously deform from $f$ to
+      $f'$.</p>
+    <! Add a image here for homotopy >
+
+    <h4> Path Homotopic </h4>
+    <p>Two paths $f$ and $f'$ mapping $[0,1]$ into $X$ are said to be
+    path homotopic if they have same initial point $x_{0}$ and same
+      final point $x$ and if there is a cont map
+      $F:[0,1] \times [0,1]\rightarrow X$ such that $F(s,0)=f(s)$,
+      $F(s,1)=f'(s)$, $F(0,t)=x_{0}$ and $F(1,t)=X_{0}$ </p>
+
+    <em> Homotopy and Path-Homotopy are equivalance relations. Hence
+    they partition the space of paths into equivalance classes call it
+    S. </em>
+
+    <h4> Product of paths </h4>
+    <p> $f$ is a path in $X$ from $x_{0} \rightarrow x_{1}$<br>
+      $g$ is a path in $X$ from $x_{1} \rightarrow x_{2}$
+      then the product $f*g$ is the path $h$ st
+      <div lang="latex">
+	h(s)=\begin{cases} 
+      f(2s) & s \in [0,\frac{1}{2}] \\
+      g(2s-1)& s\in [\frac{1}{2},1] \\
+       \end{cases}
+      </div> </p>
+
+     <p>$h$ is continuous and well defined path from
+       $x_{0} \rightarrow x_{2}$</p>
+
+  <em> The equivalance classes S along with the product operation
+    forms a Groupoid. </em>
+
+   <p> It forms a groupoid instead of a group because, the product
+   betwen two paths is always not defined. So to $S$ into a group we
+   will set $x_{0} \in X$ as a base point and restrict all homotopic
+   classes that start and end at the basepoint call it $G$. Now $G$ is
+   group with the product operation. We call this group
+   $G=\pi_{1}(X,x_{0})$ as the <strong>Fundamental group of
+   $X$</strong> relative to the base point $x_{0}$</p>
+
+   <h4> Properties of Fundamental group </h4>
+   <! Fill in >
+   <ul>
+     <li> <p>If $X$ is path connected and $x_{0},x_{1}$ are two points
+       of $X$ then $\pi_{1}(X,x_{0})$ is isomorphic to
+	 $\pi_{1}(X,x_{1})$ </p></li>
+     <li> Fundamental group is a topological invariant of the space
+       X </li>
+     <li> Fundamental group of two homeomorphic spaces are isomorphic
+     but the converse does not hold </li>
+     
+     
+   </ul>
+<h3> Simplicial Complexes </h3>
+<h4>Introduction</h4>
+<p> Simplicial complexes are made of collection of
+simplices(satisfying some properties), which are generalization of
+triangles in k-dimensions. These simplices are basic building blocks
+of topology which we will be constructing from the Data point in
+higher dimension. Given any two spaces $X$ and $Y$ we can decompose
+  them into simplices $\{X\}_{i},\{Y\}_{i}$ and any continuous map
+  $f:X \rightarrow Y$ can be approximated by a linear map $f_{i}$ on each
+simplex $i$. Moreover this approximating map $\sum_{i}f_{i} \equiv f$ ie, they belong to same homotopy class.</p>
+<h4> Convex Independent </h4>
+<p> A set $\{V_{0},V_{1},\dots,V_{k} \}$ of vectors in a vector space
+  $V$ is convex independent if the set $\{V_{1}-V_{0},V_{2}-V_{0},\dots,V_{k}-V_{0} \}$ is linearly independent.</p>
+<h4> Closed k-Simplex-[] </h4>
+<p> Let $\{V_{0},V_{1},\dots,V_{k} \}$ be a convex independent set
+then the smallest convex set containing $\{V_{0},V_{1},\dots,V_{k} \}$
+  is called a close k-simplex of dimension k.</p>
+
+<h4> Barycentric coordinates </h4>
+    <p>If $v \in [V_{0},V_{1},\dots,V_{k}]$ a k-closed simplex then if
+      $v=\sum_{i} a_{i} V_{i}$ then the coefficients $a_{i}$ with
+      $a_{i} \geq 0,\sum_{i} a_{1} =1$ is called the barycentric
+      coordinates.</p>
+
+    <h4> Open simplex-() </h4>
+    <p> Let $\{V_{0},V_{1},\dots,V_{k} \}$ be a convex independent
+      set, the set
+      $\{v \in [V_{0},V_{1},\dots,V_{k}],a_{i} > 0,i=1,2,\dots,k\}$
+      is called the open simplex.</p>
+    <h4> Simplicial Complex </h4>
+   <p> A simplicial complex (K) is a finite set of open simplicies in
+     some ${\rm I\!{R}^{n}$ such that
+     <ol>
+       <li> <p>If $(s) \in (K)$ then all open faces of $[S] \in (K)$ </li></p>
+       <li> <p>If $(s_{1}),(s_{2}) \in K$ and $(s_{1}) \cap (s_{2}) \neq \phi $ then
+	 $(s_{1})=(s_{2})$</li></p>
+       </ol>
+</p>
+
+<! Add image of simplices 1,2,3 simplexes>
+ <p> A k-simplex contains $k+1$ vertics </p>
+
+    <h4> Sub Complex </h4>
+<p> A sub complex of a simplicial complex(K) is a simplicial complex(L) st
+  $(s) \in L \implies (s) \in K$ </p>
+
+<h4> Simplicial Map </h4>
+<p> Let $K$ and $L$ be two simplicial complexes. A map $\phi:[K] \rightarrow [L]$
+  is a simplicial map if
+  <ol>
+       <li> <p>For each vertex $v \in K \implies \phi(v) \in L$ </li></p>
+<li> <p>For each simplex $(v_{0},v_{1},\dots,v_{k}) \in K$ the vertices
+    $(\phi(v_{0}),\phi(v_{1}),\dots,\phi(v_{k}))$ all lie in some closed
+    simplex of $L$</li></p>
+<li><p>For each $(s) \in K$ and $p=\sum_{i=0}^{k} a_{i}v_{i} \in (s)$
+    the image of the point p is $\phi(p)=\sum_{i=0}^{k} a_{i} \phi(v_{i})$  </li></p>
+       </ol>
+</p>
+
+<h3> Fundamental group of Simplicial complexes </h3>
+<p> We first define a set of operation on structures of simplicial complex $K$</p> 
+  <h5> Edge in K </h5>
+<p>It is an ordered pair $e=(v_{1},v_{2})$ of vertices of $K$
+  such that $v_{1},v_{2}$ lie in some simplex of $K$ </p>
+
+  <h5> Route in K </h5>
+<p>It is a finite sequence $w=e_{1}e_{2} \dots e_{k}$
+  of edges in $K$ such that for each $i \in (1,2,\dots,k-1)$
+  the end of $e_{i}=$ the origin of $e_{i+1}$ </p>
+
+  <h5>Product of routes </h5>
+<p>Let $\omega=e_{1}e_{2} \dots e_{k},\tau=e_{1}^{'}e_{2}^{'} \dots e_{k}^{'}$
+  be routes such that end of $e_{k}=$ origin of $e_{1}^{'}$
+  then $\omega * \tau =e_{1}e_{2} \dots e_{k}e_{1}^{'}e_{2}^{'} \dots e_{k}^{'}$.</p>
+
+  <h5> Inverse of a route </h5>
+<p>If $\omega=e_{1}e_{2} \dots e_{k}$ then
+  $\omega^{-1}=e_{k}^{-1}e_{k-1}^{-1} \dots e_{1}$  </p>
+
+  <h5>Edge equivalence </h5>
+<p>Let $e=(v_{1},v_{2}),f=(v_{2},v_{3})$ then $e*f$
+  is edge equivalent to $(v_{1},v_{3})$</p>
+
+<h4> Edge path Group </h4>
+
+<p> Let $K$ be a simplicial complex, $v$ a vertex of $K$ and $E(k,v)$ be
+the set of edge equivalent classes of routes in $K$ with origin $v$
+and end $v$ then $E(k,v)$ is a group with identity $(v,v)$ under the
+operation $*$ and inverse defined as above. This group is called the
+  edge path group of $K$ at $v$.</p>
+
+<p><em>Let $K$ be a simplicial complex and let $v_{0}$ be a vertex of
+$K$ then $E(K,v_{0})$ is isomorphic with $\pi_{1}([K],v_{0})$ </em></p>
+
+<h3> Homology theory </h3>
+
+<h4> Simplicial Homology </h4>
+<p> Let $S$ be a $l-$simplex with vertices $(v_{0},v_{1},\dots,v_{l})$
+  consider two orderings $(v_{j_{1}},v_{j_{2}},\dots,v_{j_{l}})$ and
+  $(v_{k_{1}},v_{k_{2}},\dots,v_{k_{l}})$ of the vertices they are equivalent
+  if $(k_{1},k_{2},\dots,k_{l})$ is an even permutation of
+  $(j_{1},j_{2},\dots,j_{l})$. This is a equivalence relation and it
+  partitions the ordering of vertices $(v_{0},v_{1},\dots,v_{l})$
+  into two equivalence classes.</p>
+<h4> Oriented Simplex </h4>
+<p> An oriented simplex is a simplex $S$ together with a choice of one
+  of the equivalence classes denoted by $<v_{0},v_{1},\dots,v_{k}>$.</p>
+<h4> Group of l-chains of K </h4>
+<p>Let $K$ be a simplicial complex and $I$ Group of integers.<br>
+  $C_{l}(K,l)=\frac{X}{Y}$ where,<br> $X$- Free group generated by all
+  oriented simplices of $K$ <br> $Y$ is the subgroup generated by
+  $(<v_{0},v_{1},\dots,v_{l}>+<v_{1},v_{0},v_{2},\dots,v_{l}>)$.
+  <br> $C_{l}(K,l)$ is a abelian group and is called group of l-chains
+  of K with integer coefficients.</p>
+
+
+<h4> Boundary of the oriented simplex </h4>
+<p> Let $ < s > = < v_{0},v_{1},\dots,v_{l+1}>$ be a $(l+1)$ oriented
+      simplex. The boundary $\parial$ of $< s >$ is the $l-1$ chain
+	defined by <br>
+	$\partial =\sum_{j=0}^{l+1}(-1)^{j} < v_{0},v_{1},\dots,v_{j-1},v_{j+1},\dots,v_{l+1}>$ </p>
+
+
+<h4>Boundary Map</h4>
+<p> Let $K$ be a simplicial complex and let $G$ be an abelian group
+  then the boundary map <br>
+  $ \partial:C_{l+1}(K,G) \rightarrow C_{l}(K,G)$ <br> 
+  is defined as
+  <br>
+
+  <!\partial(\sum g_{s} <s>) =\sum g_{s} \partial(s)>  <!Problem with this line>
+  
+Boundary of a boundary is $0$, ie the $\partial$ $^{2}=0$ </p>
+
+
+<h4> Cycles an Boundaries</h4>
+<p> Given a simplicial complex $K$ and a abelian group $G$ let
+  <br>
+  $Z_{l}(K,G)={c \in C_{l}| \partial(c) =0}$ <br>
+  all elements of $Z_{l}$ are called cycles
+  <br>
+  $B_{l}(K,G)={\partial(c)|c \in C_{l+1}(K,G)}$ <br>
+  such $\partial (c)$ are called boundaries </p>
+</p>
+
+<h4> Homology Group </h4>
+<p> We define the $l^{th}$ homology group as
+  $H_{l}(K,G)=\frac{Z_{l}(K,G)}{B_{l}(K,G)}$</p>
+
+<h4> Betti numbers </h4>
+<p> We define the $l^{th}$ betti number $\beta_{l}$ of $K$ is the integer defined as
+  $\beta_{l}=dim(H_{l(K,G)})$ <br>
+  Here in TDA we will work with $G=Z_{2}$ and
+  <ul>
+    <li> <p> $\beta_{0}$ denotes the number of connected components </p> </li> 
+    <li> <p>$\beta_{1}$ denotes the number of 1 dimensional holes </p> </li> 
+    <li> <p>$\beta_{2}$ denotes the number of 2 dimensional holes </p> </li> 
+  </ul>
+  
+</p>
+
+<h2> Introduction to TDA </h3>
+<p> TDA stands for topological data analysis, where we use topological
+methods to analyse the data. Analysis of topological aspects of the
+data provide a breif insight into the properties of the system. Since
+Higher dimension data cannot be visuvalized directly we apply
+techniques such as these to infer about the topological aspects of it,
+such as number of connected components or number of n dimensional
+holes. TDA is not only used to infer topological aspects of the Data,
+but it is also used as a tool in cluster analysis and lot more. We
+will try and explore all of these here. TDA uses persistent homology
+techinques to create topology out of the data and calculate its betti
+  numbers.</p>
+
+<p> So how is a topology made out of a set of datapoints? TDA has
+  mainly two methods to approach this problem
+  <ul>
+    <li> <strong>Topology using functions </strong> In this method,
+    TDA creates a new grid or mesh of data points within the
+    appropriate range of the input data and then for each point on the
+    grid TDA evaluvates user specified functions taking the input data
+      as input. Most commonly used functions are
+      <ol>
+	<li> Distance function (L2 Norm) </li>
+	<li> Distance to measure Function </li>
+	<li> k Nearest Neighbours </li>
+	<li> Kernel Density estimate </li>
+	<li> Kernel Distance estimate </li>
+      </ol>
+      more about the above functions will be elaborated in the
+      following sections. The resulting output is a surface</li>
+    <li> <strong> Vectoris rips complex </strong> <p> In this method
+    we create a vectoris rips complex $R(X,\epsilon)$ by varying
+    $\epsilon$ over user specified range and $X$ denotes the
+    data.$R(X,\epsilon)$ consist of simplices with vertex in $X$ and
+    diameter atmost $\epsilon$. $\sigma$ is included in a simplicial
+    complex $K$ if each pair of the vertices in $\sigma$ are atmost
+    $\epsilon$ distance apart. For each epsilon we get
+    different topological spaces.</p></li> 
+  </ul>
+</p>
+<h3> Filtration and Persistent Homology </h3>
+<p>Filtration is a set on increasing simplicial complex such that
+  $\phi = K_{0} \subseteq K_{1} \subseteq \dots \subseteq K_{n}=K$
+  where $\phi$ is the filtration and $K$ is the simplicial complex.
+  TDA creates the filtration in two different ways based on which type
+  of method was used to create the topology
+  <ul>
+    <li> <p> By creating a sublevel set with parameter $a$ and varying
+    the parameter $a$ will give different simplicial complexes which
+	will form the filtration </p></li>
+    <li> <p> By varing $\epsilon$ in rips complex will give rise to
+	rips filtration</p></li>
+  </ul>
+  <p> We are interested in the topological evolution of topological
+  charateristics of the data. Now,to quantify the evolution of the
+  topological charateristics we calculate the $l^{th}$ betti number
+  $\beta_{l}$ for all simplexes in the filtration. From this we see
+  which features(ie, $\beta_{l}$)of the data persisted for a longer
+  time over the filtraion. We then define birth of a feature(ie,
+  connected component or a 1-dim hole ..etc) that is the first time
+  the feature appears and death of the feature is the first time the
+  feature disappers as we transverse through the
+  filtration. Persistent diagram is the plot between birth time and
+  death time with each point representing a feature. Anything that is
+  on the $45$ degree line is considered to be error because it
+  represents the features that persisted for smaller time interval.
+  We search for features that are far away from this $45$ degree lines
+  in the persistent diagram.</p>
+</p>
+<h3> Example </h3>
+<img src="im1_1.jpg" alt="eg1" width="700" height="900">
+<img src="im1_2.jpg" alt="eg2" width="700" height="600">
+<h3> Effect of shape on persistent diagrams </h3>
+
+<p>We aim to see how structure of the dataset is reflected in
+persistent diagrams. Hence we approach this problem by simulating
+different set of data and plotting persistent diagrams for each of
+these. The left plots(X vs Y) represents the simulated dataset and the
+rightplots(Birth Vs Death) represent the persistent diagrams. Each
+  point in the persistent diagram represents a connected component.</p>
+<figure>
+  <img src="output_2.gif" alt="1" style="width:600px;height:400px;">
+  <figcaption>Plot:1</figcaption>
+</figure>
+
+<figure>
+<img src="output_3.gif" alt="2" style="width:600px;height:400px;">
+  <figcaption>Plot:2</figcaption>
+</figure>
+
+<figure>
+<img src="output_5.gif" alt="4" style="width:600px;height:400px;">
+  <figcaption>Plot:3</figcaption>
+</figure>
+
+<figure>
+<img src="output_4.gif" alt="3" style="width:600px;height:400px;">
+  <figcaption>Plot:4</figcaption>
+</figure>
+
+<p> We used Vector Rips complex method along with Rips filtration to
+plot these plots. We can from Plot:1 and Plot:2 that there are two
+connected components which merge to one another to form a single
+connected component. This feature is correctly represented in the
+respective persistance diagrams by the points which move away from the
+$45$ degree line and merge with the point above. Representing that
+initially there were two connected components which merged to form
+one. If you look at Plot:2 and Plot:3 we see that as the points
+scatter that they move away from each other or as the resolution
+decreases. We can see errors building up in the persistent diagram and
+all these errors lie on the $45$ degree line representing that these
+features lived only for short period and that it must be due to lack
+of resolution.
+  
+
+
+</body>
+  </html>

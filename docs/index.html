@@ -402,7 +402,159 @@ subclass of the individuals that we might have overlooked. Hence
 analysis of TDA on the above dataset implies that there might exist
 one more subgroup of the population other than controls and
 diabetic.</p>
+<h3> Density Clustering </h3>
+<p> Density clustering is a part of the TDA package. It is a
+clustering algorithm which works based on density estimates of the
+dataset. Here we will use density clustering method from the TDA
+package on the above mentioned Diabeties dataset to reinforce the our
+hypothesis of a new subtype or subgroup of the population.</p>
 
+<h4> Introduction to Density Clustering </h4>
+<p> Let $X_{n}={x_{1},x_{2},\dots,x_{n}}$ be the samples from a
+  unknown distribution $P$ on $R^{d}$ with each $x_{i}$ independent.
+  Let $f$ denote the probability distribution of $P$ and let
+  $A \subset R^{d}$ then the probability of observing data points
+  $X_{n}={x_{1},x_{2},\dots,x_{n}}$ inside $A$ is
+  $P(A)=\integral_{x \in A}f(x)dx$, where the integral is lebegue integral.</p>
+
+<p> Now we define clusters as the regions of high density
+ie,probability seperated by regions of low density. Now, we define a
+level set $L_{f}(\lambda)=cl{x \in R^{d}|f(x) \geq\lambda}$.
+$L_{f}(\lambda)$ is a set in $R^{d}$ with each point in the set having
+density greater than $\lambda$. Any d-dimensional subset of
+$L_{f}(\lambda)$ is called a <strong>high density region</strong>.
+Maximal connected subset of $L_{f}(\lambda)$ is called a <strong> High
+density cluster of P</strong>. Now as we vary the $\lamba$ from $0$ to
+$\infty$, we record the evolution of high density clusters of P. This
+creates a cluster density tree of P. $T={$L_{f}(\lambda)$|\lamba \geq 0}$.
+This $T$ is called a tree and it satisfies </p>
+<figure>
+<img src="level.png" alt="level_set" style="width:600px;height:400px;">
+  <figcaption>Plot:Formation of a lambda tree from a given probability
+  distribution function. </figcaption>
+</figure>
+<ul>
+    <li> <p> If $A,B \in T$ then $A \subset B$ or $B \subset A$ or $A \intersect B = \phi$ </p> </li>
+  </ul>
+<p> This tree is called the $\lamba$ tree, simillarly we can define
+  $\alpha$ index tree and $\kappa$ index tree. We applied the above
+  described method to the above described diabetes dataset and we
+  found that density clustering algorithm supports our claim.</p>
+<figure>
+<img src="lambda.png" alt="lamba tree" style="width:600px;height:400px;">
+  <figcaption>Plot:Lambda tree for the diabetes dataset. </figcaption>
+  <img src="cluster.png" alt="cluster" style="width:600px;height:400px;">
+  <figcaption>Plot: We can see 3 clusters using the above mentioned method. </figcaption>
+</figure>
+
+<h2> The Mapper algorithm and DSGA Analysis (Post Midsem) </h2>
+<h3> Introduction </h3>
+<p> We here try to understand the workings and inner aspects of the
+  famous Mapper algorithm. Mapper is a part of the TDA toolkit. We
+  here read a paper
+  <a href="https://www.ncbi.nlm.nih.gov/pubmed/21482760"> Topology
+  based data analysis identifies a subgroup of breast cancers with a
+  unique mutational profile and excellent survival.</a> to understand
+  how they used mapper and DSGA to identify a subgroup of patients.</p>
+<p> Mostly all computational part of the data analysis ultimately
+identifies the shape charateristic of the data eg: Clustering
+algorithms looks for clusters which are shape charateristic of the
+data..etc. Hence shape recogonizion of a dataset in high dimension is
+highly crucial for analysis. In this paper they describe a method
+called <strong> Progression Analysis of Disease(PAD) </strong>, the
+  following are the advantages of this method
+  <ul>
+    <li> The clustering done by PAD is robust </li>
+    <li> It provides biologically meaningful shape charateristics </li>
+    <li> It is also a visuvalization tool </li>
+    <li> PAD is not too much distance/metric sensitive as PCA and MDS(Multi Dimensional Scaling) </li>
+  </ul>
+
+The rest of the paper sheds more light on this PAD algorithm and how
+it identified the new "c-MYB" breast cancer subgroup of the
+population.  PAD is a combination of Mapper and DSGA(Disease Specific
+Genome analysis).</p>
+
+<h3>DSGA(Disease Specific Genome Analysis) </h3>
+<p> DSGA is a genome analysis technique that employs comparision to
+normal expression to extract data that is closely related with the
+disease. DSGA is used to analyse gene expression datasets of healthy
+and diseased individuals which are retrived from analysis of
+microarrays. The microarray dataset contains intensity values for each
+gene representing the expression level of that particular gene in the
+genome sequence, for example </p>
+<div lang='latex'>
+  \begin{array}{|cccc|}
+  gene & person1 & person2 & \dots \\
+  gene1 & 1 & 50 & \dots \\
+  gene2 & 10 & 24 & \dots \\
+  \vdots & \vdots & \vdots & \dots \\
+  \end{array} 
+</div>
+
+<p>DSGA tranforms the above array into two sums "Normal Component" $+$
+"Diseased Component", where the normal component mimics the
+normal/healthy tissue gene expression. It <strong>assumes</strong>
+that mathematical model for normal expression is a linear subspace
+which is derived from normal tissue gene expression.<br> This
+assumption is crucial. This assumption is valid in biological setting
+only for specific diseases/tissues. For example
+consider <em>Cancer</em> where tumors are devoloped in tissues. These
+tumors are due to overexpression or underexpression of specific genes
+which are related to cancer. Hence the ratio of these cancer genes are
+different in the cancer patients and healthy individuals. Hence, if we
+consider gene expression of each individual as a vector
+$V=(gene1,gene2,\dots)$ then there exist atleast one coordinate $i$
+where the $gene_{i}$ is overexpressed or underexpressed in cancerous
+than healthy individual. $V$ of healthy individuals should span a
+linear subpace, because if we somehow minimize the unique
+charateristic of that sample or individual then the ratios of genes
+$\frac{g_{i}}{g_{j}}$ of healthy individuals should be
+comparable. Hence we assume that normal expression data forms a linear
+subspace. We then define the diseased components as deviations from
+this linear subspace, ie residuals from this linear model. DSGA is
+done in two steps one being creating this normal/healthy linear
+subspace and projecting the array(to analyse) on this space</p>
+
+<h4> Creation of Subspace </h4>
+<p> To obtain a good approximation of normal expression data we first
+reduce its dimension using a modified verison of PCA and then create a
+linear subspace by taking span of it.<br> Let
+$(T_{1},T_{2},\dots,T_{s})$ denote diseased tissue data and
+$(N_{1},N_{2},\dots,N_{r})$ denote normal/healthy tissue data. Let
+$v=(g_{1},g_{2},\dots,g_{\gamma})$ denote the gene expression vector
+  and $v \in R^{\gamma}$.<br>
+  Then $\mathcal{N}_{all}=<N_{1},N_{2},\dots,N_{r}> \subset R^{\gamma}$ as a subspace.
+    Where $\mathcal{N}_{all}=\{v|v=\sum_{j} \alpha_{j} N_{j}, \alpha_{j} \in R \}$ <br><br>
+    We need to construct $\mathcal{N}$ such that <br><br>
+    $\mathcal{N} \subset N_{all}$ as a subspace <br>
+    To do this we apply two steps</p>
+    <ul>
+      <li> FLAT Construction </li>
+      <li> PCA </li>
+    </ul>
+  <p>To minimize the impact of the data charateristics that are unique
+    to an individual or tissue sample we apply FLAT Construction.<br>
+    Given $\{ N_{1},N_{2},\dots,N_{r} \}$ We define $\hat{N}_{i}$(flat
+    vector) as the "least square fit" of the linear model
+    $\sum_{j \neq i}^{r} \beta_{j} N_{j}$ with $0$ intercept.  We do this for
+    each and every N to create $\{ \hat{N}_{1},\hat{N}_{2},\dots,\hat_{N}_{r} \}$.<br> We now apply
+    PCA on these Flat constructed vectors to reduce its dimension say to $l$, which is a
+    parameter in our model. Now we define $\mathcal{N}=< \hat{N}_{1},\hat{N}_{2},\dots,\hat_{N}_{l} >$
+      This will act as our normal linear subspace.</p>
+  <h4> Projection </h4>
+<p> We define array space $A=< T_{1},T_{2},\dots,T_{s},N_{1},\dots,N_{r} >$.
+    Since $\mathcal{N} \subset N_{all} \subset A$. We can write <br>
+    $A=\mathcal{N} \oplus \mathcal{N}^{\perp}$, where $\mathcal{N}^{\perp}$
+    is the orthogonal complement. Hence we can write any vector $v \in A$ as
+    $v=v_{\mathcal{N}} \oplus v_{\mathcal{N}^{\perp}}$. This decomposition
+    only depends on subspace $\mathcal{N}$ and not on the choice of basis.
+    We define projection matrix $P=A(A^{t}A)^{-1}A^{t}$, hence any vector
+    $v$ can be decomposed by using the following formula <br>
+    $v_{\mathcal{N}}=P.v$ <br>
+    $v_{\mathcal{N}^{\perp}}=v-v_{\mathcal{N}}$<br>
+    We now will project all the data $v \in A$ into $v_{\mathcal{N}^{\perp}}$
+    and use them for further analysis.
 
 </body>
   </html>

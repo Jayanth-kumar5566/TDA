@@ -554,7 +554,32 @@ $v=(g_{1},g_{2},\dots,g_{\gamma})$ denote the gene expression vector
     $v_{\mathcal{N}}=P.v$ <br>
     $v_{\mathcal{N}^{\perp}}=v-v_{\mathcal{N}}$<br>
     We now will project all the data $v \in A$ into $v_{\mathcal{N}^{\perp}}$
-    and use them for further analysis.
+    and use them for further analysis.</p>
+<h3> The Mapper Algorithm </h3>
+<p> It is a computational method for extracting simple descriptions of
+high dimensional datasets in the form of simplicial complexes. This
+method is a part of the TDA suite. Let us suppose we have a dataset
+$X$ and a real valued function $f:X \rightarrow \mathbb{R}$, which
+reflects the geometric aspects of the dataset or the property being
+studied by the user,eg: Density estimator..etc. The target space
+$\mathbb{R}$ is variable upon need to higher dimensional spaces or
+manifolds, producing higher dimensional complexes or graphs with
+  cycles.</p>
+<h4> Topological background </h4>
+<h5> Covering of a space </h5>
+<p>If the set $X$ is a topological space, then a cover $\mathcal{C}$
+of $X$ is a collection of subsets $U_{\alpha}$ of $X$ whose union is
+the whole space $X$, where $\alpha \in \mathcal{A}$ and $\mathcal{A}$
+is the index set.</p>
+<h5> Nerve of a Covering</h5>
+<p> Given a finite covering $U=\{U_{\alpha}\}_{\alpha \in \mathcal{A}$
+of a space $X$. We define the nerve of a covering $U$ to be the
+simplicial complex $N(U)$ whose vertex set is the indexing set
+  $\mathcal{A}$, and where a family $\{ \alpha_{0},\alpha_{1},\dots,\alpha_{k} \}$
+  spans a $k$-simplex if and only if
+  $U_{\alpha_{0}} \cap U_{\alpha_{1}} \cap \dots \cap U_{\alpha_{k}} \neq \phi$
+  
+
 
 </body>
   </html>

@@ -578,8 +578,50 @@ simplicial complex $N(U)$ whose vertex set is the indexing set
   $\mathcal{A}$, and where a family $\{ \alpha_{0},\alpha_{1},\dots,\alpha_{k} \}$
   spans a $k$-simplex if and only if
   $U_{\alpha_{0}} \cap U_{\alpha_{1}} \cap \dots \cap U_{\alpha_{k}} \neq \phi$
+  [ie, in 0-dimension there is an edge between two vertices $\alpha_{i}$ and $\alpha_{j} \iff U_{\alpha_{i}} \cap U_{\alpha_{j}}$]</p>
+<h5> Partition of Unity </h5>
+<p> Partition of unity on $X$ is a collection ${g_{i}}$ of continuous
+  real-valued functions on $X$ such that
+  <ul>
+    <li> <p> $g_{i} \geq 0$ for each $i$ </p> </li>
+    <li> <p> Every $x \in X$ has a neighbourhood $U$ such that $U \cap supp(g_{i}) = \phi$ for all but finitely many $g_{i}$ </p> </li>
+    <li> <p> For each $x \in X$, $\sum_{i} g_{i}(x)=1$ </p> </li>
+  </ul>
+</p>
+<h5> Subordinate to an open cover </h5>
+<p> Partition to unity ${g_{i}}$ on $X$ is a subordinate to an open cover of $X \iff$ for each $g_{i} \exists$ an element $U$ of the cover such
+  that $supp(g_{i}) \subset U$ where $supp(g_{i})=\overline{\{x \in X | g_{i}(x) \neq 0 \}}$</p>
+  </br>
+<h4> The theory of mapper </h4>
+  <p> If ${v_{0},v_{1},\dots,v_{k}}$ are the vertices of simplex, we
+    can define barycentric coordinates for any point inside the
+    simplex.  For any point $x \in X$, we let $\tau(x) \subset A$ be
+    the set of $\alpha \in A$ such that $x \in U_{\alpha}$ where
+    ${U_{\alpha}$ is a finite covering}. Define $\rho(x) \in N(U)$ to be
+    the point in simplex spanned by the vertices $\alpha \in \tau(x)$,
+    whose barycentric coordinates are $(\phi_{\alpha_{0}},\phi_{\alpha_{1}},\dots,\phi_{alpha_{l}})$
+    and $\{ \alpha_{0},\alpha_{1},\dots,\alpha_{l} \}$ is the enumeration of $\tau(x)$.
+    $\rho$ is continuous and kind of provides partial coordination of
+    $X$.</br>  Suppose we are given a space $X$ equipped with a
+    continuous map $f: X \rightarrow Z$ where $Z$ is parameter space
+    and if $Z$ is equipped with a covering
+    $U=\{ U_{\alpha} \}_{\alpha \in A}$ for some finite indexing set $A$.
+    </br>
+    $f^{-1}(U_{\aplha})$ will also form an open covering of $X$. Since $f$ is continuous.
+    Now for each $\alpha$, consider $f^{-1}(U_{\alpha}) \subset X$.</br>
+    We can decompose </br>
+    $f^{-1}(U_{\alpha})=\cup_{i=1}^{j_{\alpha}} V(\alpha,i)$ into its path connected components, </br>
+    where $j_{\alpha}$ is the number of connected components. We call this covering obtained from $U$ as $\bar{U}$. </p>
+  <h5> Map of coverings </h5>
+<p> Let $U=\{ U_{\alpha}\}_{\alpha \in A}$ and $\gamma =\{V_{\beta}\}_{\beta \in B}$
+  be two coverings of the space $X$ a "map
+  of coveings" from $U$ to $\gamma$ is a function $f: A \rightarrow B$
+  such that for all $\alpha on A$ we have $U_{\alpha} \subset
+  V_{f(\alpha) \in B}$ </p>
+    
+      
+    
   
-
-
+ 
 </body>
   </html>

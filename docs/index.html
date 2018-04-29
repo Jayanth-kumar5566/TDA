@@ -616,9 +616,26 @@ simplicial complex $N(U)$ whose vertex set is the indexing set
 <p> Let $U=\{ U_{\alpha}\}_{\alpha \in A}$ and $\gamma =\{V_{\beta}\}_{\beta \in B}$
   be two coverings of the space $X$ a "map
   of coveings" from $U$ to $\gamma$ is a function $f: A \rightarrow B$
-  such that for all $\alpha on A$ we have $U_{\alpha} \subset
-  V_{f(\alpha) \in B}$ </p>
-    
+  such that for all $\alpha on A$ we have
+  $U_{\alpha} \subset V_{f(\alpha) \in B}$ 
+</br>
+Suppose we are given a map of coverings from $U$ to $\gamma$
+ie, a map of sets $f:A \rightarrow B$ satisfying the above conditions
+it induces a map on simplicial complexes.
+$N(f):N(U) \rightarrow N(\gamma)$
+Suppose we have a family of coverings $\{U_{i}\}$ and maps of coverings
+$f_{i}:U_{i} \rightarrow U_{i+1}$ then we obtain a diagram of simplicial
+complexes and maps. </br>
+$N(U_{0}) \xrightarrow{N(f_{0})} N(U_{1}) \xrightarrow{N(f_{1})} \dots \xrightarrow{N(f_{n+1})} N(U_{n})$.
+
+Consider the space $X$ equipped with $f:X \rightarrow Z$ where $Z$ is the parameter space with
+the covering $U$ and $\gamma$ and if we are given the map of covering $g:U \rightarrow \gamma$
+of the space $Z$ then there is a corresponding covering $\bar{g}:\bar{U} \rightarrow \bar{\gamma}$ of space $X$.
+ie, If $U \subset V$ then $f^{-1}(U) \subset f^{-1}(V)$ and $\bar{g}:\bar{u} \rightarrow \bar{\gamma}$ is such
+that $U_{\alpha}(i) \subset V_{f(\beta)(j)}$. This is the main core concept of the mapper algorithm taking the
+inverse of the covering and forming a simplicial complex out of it. Lets see some examples of how mapper
+works below </p>
+
       
     
   

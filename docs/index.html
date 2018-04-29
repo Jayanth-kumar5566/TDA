@@ -635,10 +635,44 @@ ie, If $U \subset V$ then $f^{-1}(U) \subset f^{-1}(V)$ and $\bar{g}:\bar{u} \ri
 that $U_{\alpha}(i) \subset V_{f(\beta)(j)}$. This is the main core concept of the mapper algorithm taking the
 inverse of the covering and forming a simplicial complex out of it. Lets see some examples of how mapper
 works below </p>
+</br>
+<em> <h4> Example 1 </h4> </em>    
+<p> Consider the situation where X is $[-M,M] \subset \mathbb{R}$, the parameter space $[0,\infty)$
+  and the function $f: X \rightarrow \mathbb{R}$ is the probability density function for a gaussian
+  distribution given by $f(x)=\frac{1}{\sigma \sqrt(2 \pi)}e^{-\frac{-x^{2}}{2 \sigma^{2}}}$. The covering
+  $U$ of $Z$ consists of 4 subsets $\{[0,5),(4,10),(9,15),(14,\infinity)\}$. We can see that $f^{-1}([0,5))$
+  consists of two components colored blue in the diagram and
+  $f^{-1}(14,\infty)$  consists of 1 connected component colored green.Simillarly one can do this inverse mapping of
+  open sets in the open cover $U$ and create simplicial complex correspondingly by adding edges between
+  the nodes if the inverse image overlaps.
+  <figure>
+  <img src="X.png" alt="X" style="width:250px;height:80px;">
+  <img src="Z.png" alt="Z" style="width:600px;height:80px;">
+   <figcaption>Fig: Left hand side is the X space and right is the Z
+   space with open sets.Each open set is colored with one single
+     color. </figcaption>
+   <figure>
+     <img src="normal.png" alt="distribution" style="width:600px;height:500px;">
+   </figure>
+   The final complex looks something like this, the color indicates the average
+   value of the function on that cluster. The size of the node indicates the
+   number of data points in that cluster.</p>
+   <img src="simpl.jpg" alt="complex" style="width:250px;height:100px;">
 
-      
-    
+   <em> <h4> Example 2 </h4> </em>
+<p> Until the previous example we were working with a topological space which is continous
+  but real world data isn't continuous hence there is no appropriate meaning to path
+  connected component in discrete data. In order to replace this with an appropriate
+  version we use clustering as a technique to replace the continum version path connectedness.
+  Here is an example in this example we implement a python code for this algorithm/processes
+  described above. Here is what the dataset looks like
+  <img src="make_circles.png" alt="circle" style="width:600px;height:600px;"> </br>
+  The code can be found  <a href="../Codes/make_circle.py">here</a>. </br> 
+  The output of the code can be found <a href="make_circles_output.html">here</a>.
+
+  Here we used the SUM of $x+y$ as the filter function </p>
+
   
- 
+  
 </body>
   </html>

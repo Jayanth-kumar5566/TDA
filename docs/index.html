@@ -557,7 +557,7 @@ $v=(g_{1},g_{2},\dots,g_{\gamma})$ denote the gene expression vector
     and use them for further analysis.</p>
 <em> The above algorithm was implemented using python on a random array,
   to have a look at the code for the algorithm visit
-  <a href="https://github.com/Jayanth-kumar5566/TDA/blob/master/Codes/dsga.py">here</a>
+  <a href="https://github.com/Jayanth-kumar5566/TDA/blob/master/Codes/dsga.py">here</a> </em>
 <h3> The Mapper Algorithm </h3>
 <p> It is a computational method for extracting simple descriptions of
 high dimensional datasets in the form of simplicial complexes. This
@@ -676,6 +676,26 @@ works below </p>
   Here we used the SUM of $x+y$ as the filter function </p>
 
   <h4> Application of Mapper to diabetes dataset </h4>
-  
+  <p> Now we would like to apply mapper to the diabetes dataset to
+  find if there is really a third cluster in the dataset which we
+  doubted from our previous algorithm. Using Mapper with the filter
+    function as sum $x+y$ and the clusterer as kmeans with explicitly
+    specifying the number of clusters to be 2. We get
+    <a href="data_output_2.html">this output</a>. If we specify the
+    number of clusters to be 3 explicitly in kmeans we get
+    <a href="data_output_3.html">this</a>. The python code used to
+    implement the above example can be found
+    <a href="https://github.com/Jayanth-kumar5566/TDA/blob/master/Codes/data_mapper.py">here</a>. </br>
+    As one can see in the case 1 where there are two clusters there is a clear cut seperation between
+    the two groups and 1 diabetic is misclassified as control. We can also observe that there is a clear
+    change in the intensity of the color in a single network, indicating the progression levels.
+    One can also observe the sizes of the nodes which also change progressively this indicates
+    the number of people in that state/node. It is also evident from the complex that the evolution of
+    size and color intensity of controls is in opposite direction corresponding to the diabetic.</br>
+    If we look at the output which used 3 as a parameter for kmeans, we see there are three disconnected
+    components in the network, of which one node contains 2 controls with clear dark red color. Indicating that
+    their sum value is the lowest comparing to all other points. In this complex we can see that 1 control as
+    been misclassified as diabetic and 2 diabetic as controls. Relatively more error as compared to the other
+    graph using 2 clusters.
 </body>
   </html>
